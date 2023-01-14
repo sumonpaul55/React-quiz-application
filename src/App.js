@@ -1,5 +1,5 @@
 import React from "react";
-
+import "../src/Styels/App.css";
 const App = () => {
   return (
     <div>
