@@ -4,7 +4,7 @@ import classes from "../Styels/illustration.module.css";
 const Illustration = () => {
   return (
     <>
-      <div class={classes.illustration}>
+      <div className={classes.illustration}>
         <img src={signupimg} alt="Signup" />
       </div>
     </>

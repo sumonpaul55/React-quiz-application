@@ -8,5 +8,4 @@ const Form = ({ children, className, ...rest }) => {
     </form>
   );
 };
-
 export default Form;
