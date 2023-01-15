@@ -1,12 +1,14 @@
 import React from "react";
 import "../src/Styels/App.css";
+import Layout from "./components/Layout";
+import Home from "./components/pages/Home";
 const App = () => {
   return (
-    <div>
-      <header>
-        <h1>this is heder here</h1>
-      </header>
-    </div>
+    <>
+      <Layout>
+        <Home />
+      </Layout>
+    </>
   );
 };
 
