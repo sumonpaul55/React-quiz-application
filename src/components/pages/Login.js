@@ -15,7 +15,9 @@ const Login = () => {
         <Form className={classes.login}>
           <Textinput type="email" placeholder="Enter eamil" icon="alternate_email" />
           <Textinput type="password" placeholder="Enter password" icon="lock" />
-          <Button>Login now</Button>
+          <Button>
+            <span>Login now</span>
+          </Button>
         </Form>
       </div>
     </>
