@@ -13,10 +13,10 @@ const Signup = () => {
       <div className="column">
         <Illustration />
         <Form className={classes.signup}>
-          <Textinput type="text" placeholeder="Enter name" icon="person" />
-          <Textinput type="email" placeholeder="Enter_email" icon="alternate_email" />
-          <Textinput type="password" placeholeder="Enter passward" icon="lock" />
-          <Textinput type="password" placeholeder="Confirm passward" icon="lock_clock" />
+          <Textinput type="text" placeholder="Enter name" icon="person" />
+          <Textinput type="email" placeholder="Enter_email" icon="alternate_email" />
+          <Textinput type="password" placeholder="Enter passward" icon="lock" />
+          <Textinput type="password" placeholder="Confirm passward" icon="lock_clock" />
           <Checkbox text="I agree to the Terms &amp; Conditions" />
           <Button>Submit Now</Button>
           <div className="info">
