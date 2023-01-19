@@ -4,7 +4,7 @@ import { useAuth } from "../context/Authcontext";
 import classes from "../Styels/account.module.css";
 
 const Account = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
   return (
     <div className={classes.account}>
       {currentUser ? (
@@ -13,7 +13,7 @@ const Account = () => {
             account_circle
           </span>
           <Link to="profile">{currentUser.displayName}</Link>
-          <span className="material-icons-outlined" title="Logout">
+          <span className="material-icons-outlined" title="Logout" onClick={logout}>
             logout
           </span>
         </>
