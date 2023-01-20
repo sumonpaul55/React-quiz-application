@@ -7,7 +7,10 @@ import Login from "./components/pages/Login";
 import Quiz from "./components/pages/Quiz";
 import Result from "./components/pages/Result";
 import Signup from "./components/pages/Signup";
+import PrivetLogin from "./components/PrivetLogin";
+import Privetroute from "./components/Privetroute";
 import { AuthProvider } from "./context/Authcontext";
+
 const App = () => {
   return (
     <>
@@ -15,11 +18,15 @@ const App = () => {
         <AuthProvider>
           <Layout>
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/quiz" element={<Quiz />} />
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/home" element={<Home />}></Route>
+              <Route path="/signup" element={<Signup />}></Route>
+              <Route element={<PrivetLogin />}>
+                <Route path="/login" element={<Login />}></Route>
+              </Route>
+              <Route element={<Privetroute />}>
+                <Route path="/quiz" element={<Quiz />} />
+              </Route>
               <Route path="/result" element={<Result />} />
             </Routes>
           </Layout>

@@ -7,7 +7,6 @@ import Form from "./Form";
 import Textinput from "./Textinput";
 
 const SignupForm = (e) => {
-  e.preventDefault();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
