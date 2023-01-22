@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 const useVideoList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [videos, setVideos] = useState([]);
 
   useEffect(() => {
     async function fetchVideo() {
@@ -17,7 +18,15 @@ const useVideoList = () => {
         setLoading(true);
         // Required firebase database
         const snapshot = await get(videoquery);
+        console.log(snapshot);
         setLoading(false);
+        if (snapshot.exists()) {
+          setVideos((prevVideo) => {
+            return [...prevVideo, ...Object.values(snapshot.val())];
+          });
+        } else {
+          // code
+        }
       } catch (err) {
         console.log(err);
       }
