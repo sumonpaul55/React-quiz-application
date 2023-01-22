@@ -29,10 +29,17 @@ const useVideoList = () => {
         }
       } catch (err) {
         console.log(err);
+        setLoading(false);
+        setError(true);
       }
     }
     fetchVideo();
   }, []);
+  return {
+    loading,
+    error,
+    videos,
+  };
 };
 
 export default useVideoList;
