@@ -12,13 +12,13 @@ const SignupForm = (e) => {
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
   const [agree, setAgree] = useState("");
-  const [error, setError] = useState();
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const { signup } = useAuth();
-
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
+    e.preventDefault();
     if (password !== confirmpassword) {
       return setError("Password not matched");
     }

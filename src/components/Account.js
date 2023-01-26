@@ -5,6 +5,7 @@ import classes from "../Styels/account.module.css";
 
 const Account = () => {
   const { currentUser, logout } = useAuth();
+
   return (
     <div className={classes.account}>
       {currentUser ? (

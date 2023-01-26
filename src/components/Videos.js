@@ -6,18 +6,18 @@ import classes from "../Styels/videos.module.css";
 import Video from "./Video";
 
 const Videos = () => {
-  const { loading, error, videos } = useVideoList();
+  const { loading, error, videos } = useVideoList(0);
   return (
     <div className={classes.videos}>
       {videos.length > 0 &&
-        videos.map((video) => {
-          <Link to="quiz" key={video.youtubeID}>
+        videos.map((video, index) => (
+          <Link to="quiz" key={index}>
             <Video title={video.title} id={video.youtubeID} noq={video.noq} />
-          </Link>;
-        })}
-      {!loading && videos.length === 0(<h1>data not found</h1>)}
-      {error && <h1>Ther was an problem</h1>}
-      {loading && <h1>Loading...</h1>}
+          </Link>
+        ))}
+      {!loading && videos.length === 0 && <h2>Data not found</h2>}
+      {error && <h2>There was an error</h2>}
+      {loading && <h2>Data Loading...</h2>}
     </div>
   );
 };
