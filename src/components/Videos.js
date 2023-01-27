@@ -6,21 +6,17 @@ import useVideoList from "../Hooks/useVideoList";
 import Video from "./Video";
 
 const Videos = () => {
-  const [page, setPage] = useState(10);
+  const [page, setPage] = useState(5);
   const { loading, error, videos } = useVideoList(page);
   return (
     <div>
       {videos.length > 0 && (
-        <InfiniteScroll dataLength={videos.length} hasMore={true} next={() => setPage(page + 5)}>
-          {videos.map((video) =>
-            video.noq > 0 ? (
-              <Link to="quiz" key={video.youtubeID}>
-                <Video title={video.title} id={video.youtubeID} noq={video.noq} />
-              </Link>
-            ) : (
-              <Video title={video.title} id={video.youtubeID} noq={video.noq} />
-            )
-          )}
+        <InfiniteScroll dataLength={videos.length} hasMore={true} next={() => setPage(page + 5)} loader="Loading...">
+          {videos.map((video, index) => (
+            <Link to="quiz" key={index}>
+              <Video key={video.youtubeID} title={video.title} id={video.youtubeID} noq={video.noq} />
+            </Link>
+          ))}
         </InfiniteScroll>
       )}
       {!loading && videos.length === 0 && <h2>Data not found</h2>}

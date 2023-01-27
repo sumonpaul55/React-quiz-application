@@ -30,6 +30,7 @@ const useVideoList = (page) => {
         setError(true);
       }
     }
+
     fetchVideo();
   }, [page]);
   return {
