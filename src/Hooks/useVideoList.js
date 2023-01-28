@@ -2,6 +2,7 @@ import { get, getDatabase, limitToFirst, orderByKey, query, ref, startAt } from 
 import { useEffect, useState } from "react";
 
 const useVideoList = (page) => {
+  const [hasMore, sethasMore] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [videos, setVideos] = useState([]);
@@ -23,6 +24,8 @@ const useVideoList = (page) => {
           setVideos((prevVideo) => {
             return [...prevVideo, ...Object.values(snapshot.val())];
           });
+        } else {
+          sethasMore(false);
         }
       } catch (err) {
         console.log(err);
@@ -33,10 +36,12 @@ const useVideoList = (page) => {
 
     fetchVideo();
   }, [page]);
+
   return {
     loading,
     error,
     videos,
+    hasMore,
   };
 };
 export default useVideoList;

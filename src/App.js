@@ -25,7 +25,7 @@ const App = () => {
                 <Route path="/login" element={<Login />}></Route>
               </Route>
               <Route element={<Privetroute />}>
-                <Route path="/quiz" element={<Quiz />} />
+                <Route path="/quiz/:id" element={<Quiz />} />
               </Route>
               <Route path="/result" element={<Result />} />
             </Routes>
