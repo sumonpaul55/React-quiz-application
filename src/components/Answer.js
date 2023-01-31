@@ -5,7 +5,7 @@ const Answer = ({ options = [], handleAnswerchange }) => {
   return (
     <div className={classes.answers}>
       {options.map((option, index) => (
-        <Checkbox key={index} className={classes.answer} text={option.title} vlaue={index} checked={option.checked} onChange={handleAnswerchange} />
+        <Checkbox key={index} className={classes.answer} text={option.title} vlaue={index} checked={option.checked} onChange={(e) => handleAnswerchange(e, index)} />
       ))}
     </div>
   );
