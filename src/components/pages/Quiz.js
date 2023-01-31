@@ -1,6 +1,8 @@
+import { getDatabase, ref, set } from "firebase/database";
 import _ from "lodash";
 import React, { useEffect, useReducer, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import { useAuth } from "../../context/Authcontext";
 import useQuestions from "../../Hooks/useQuestions";
 import Answer from "../Answer";
 import Miniplayer from "../Miniplayer";
@@ -33,6 +35,8 @@ const Quiz = () => {
   const [currentQuestion, setcurrenQuestion] = useState(0);
 
   const [qna, dispatch] = useReducer(reduce, initialState);
+  const { currentUser } = useAuth();
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch({
       type: "questions",
@@ -48,7 +52,33 @@ const Quiz = () => {
       value: e.target.checked,
     });
   };
+  // handle when the user clicks on the next button to go the next question
+  function nextQuestion() {
+    if (currentQuestion < questions.length) {
+      setcurrenQuestion((prevQuestion) => prevQuestion + 1);
+    }
+  }
+  function prevQuestion() {
+    if (currentQuestion >= 1 && currentQuestion <= questions.length) {
+      setcurrenQuestion((prevQuestion) => prevQuestion + 1);
+    }
+  }
+  async function submit() {
+    const { uid } = currentUser;
+    const db = getDatabase();
+    const resultRef = ref(db, `result/${uid}`);
 
+    await set(resultRef, {
+      [id]: qna,
+    });
+    navigate({
+      pathname: `/result/${id}`,
+      state: { qna },
+    });
+  }
+
+  // calculate for progress bar
+  const parcentage = questions.length > 0 ? ((currentQuestion + 1) / questions.length) * 100 : 0;
   return (
     <>
       {loading && <h3>Loading...</h3>}
@@ -58,7 +88,7 @@ const Quiz = () => {
           <h1>{qna[currentQuestion].title}</h1>
           <h4>Question can have multiple answers</h4>
           <Answer options={qna[currentQuestion].options} handleAnswerchange={handleAnswerchange} />
-          <ProgressBar />
+          <ProgressBar next={nextQuestion} prev={prevQuestion} progressparcent={parcentage} submit={submit} />
           <Miniplayer />
         </>
       )}
