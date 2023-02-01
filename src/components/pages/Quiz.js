@@ -60,14 +60,13 @@ const Quiz = () => {
   }
   function prevQuestion() {
     if (currentQuestion >= 1 && currentQuestion <= questions.length) {
-      setcurrenQuestion((prevQuestion) => prevQuestion + 1);
+      setcurrenQuestion((prevQuestion) => prevQuestion - 1);
     }
   }
   async function submit() {
     const { uid } = currentUser;
     const db = getDatabase();
     const resultRef = ref(db, `result/${uid}`);
-
     await set(resultRef, {
       [id]: qna,
     });

@@ -5,7 +5,6 @@ import Layout from "./components/Layout";
 import Home from "./components/pages/Home";
 import Login from "./components/pages/Login";
 import Quiz from "./components/pages/Quiz";
-import Result from "./components/pages/Result";
 import Signup from "./components/pages/Signup";
 import PrivetLogin from "./components/PrivetLogin";
 import Privetroute from "./components/Privetroute";
@@ -27,7 +26,9 @@ const App = () => {
               <Route element={<Privetroute />}>
                 <Route path="/quiz/:id" element={<Quiz />} />
               </Route>
-              <Route path="/result" element={<Result />} />
+              <Route element={<Privetroute />}>
+                <Route path="/result/:id" element={<Quiz />} />
+              </Route>
             </Routes>
           </Layout>
         </AuthProvider>
