@@ -1,7 +1,7 @@
 import { getDatabase, ref, set } from "firebase/database";
 import _ from "lodash";
 import React, { useEffect, useReducer, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/Authcontext";
 import useQuestions from "../../Hooks/useQuestions";
 import Answer from "../Answer";
@@ -9,7 +9,6 @@ import Miniplayer from "../Miniplayer";
 import ProgressBar from "../ProgressBar";
 
 const initialState = null;
-
 const reduce = (state, action) => {
   // eslint-disable-next-line default-case
   switch (action.type) {
@@ -28,7 +27,6 @@ const reduce = (state, action) => {
       return state;
   }
 };
-
 const Quiz = () => {
   const { id } = useParams();
   const { loading, error, questions } = useQuestions(id);
@@ -70,12 +68,8 @@ const Quiz = () => {
     await set(resultRef, {
       [id]: qna,
     });
-    navigate({
-      pathname: `/result/${id}`,
-      state: { qna },
-    });
+    navigate(`/result/${id}`, { state: qna });
   }
-
   // calculate for progress bar
   const parcentage = questions.length > 0 ? ((currentQuestion + 1) / questions.length) * 100 : 0;
   return (

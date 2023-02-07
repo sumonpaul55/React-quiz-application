@@ -1,13 +1,14 @@
-import React, { useRef } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
+import { useLocation, useParams } from "react-router-dom";
 import useAnswers from "../../Hooks/useAnswers";
 import Analysis from "../Analysis";
 import Summery from "../Summery";
 
 const Result = () => {
   const { id } = useParams();
-  const { qna } = useRef();
-  console.log(qna);
+  const location = useLocation();
+  // eslint-disable-next-line no-unused-vars
+  const state = location;
   const { loading, error, answers } = useAnswers(id);
   return (
     <>

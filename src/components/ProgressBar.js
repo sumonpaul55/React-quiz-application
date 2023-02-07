@@ -15,7 +15,7 @@ const ProgressBar = ({ progressparcent, next, prev, submit }) => {
         </div>
       </div>
       <Button className="button next" onClick={progressparcent === 100 ? submit : next}>
-        <span>Next Question</span>
+        <span>{progressparcent === 100 ? "Submit" : "Next Question"}</span>
         <span className="material-icons-outlined"> arrow_forward </span>
       </Button>
     </div>
