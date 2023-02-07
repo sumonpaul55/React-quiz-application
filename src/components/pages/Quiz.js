@@ -80,7 +80,7 @@ const Quiz = () => {
         <>
           <h1>{qna[currentQuestion].title}</h1>
           <h4>Question can have multiple answers</h4>
-          <Answer options={qna[currentQuestion].options} handleAnswerchange={handleAnswerchange} />
+          <Answer input={true} options={qna[currentQuestion].options} handleAnswerchange={handleAnswerchange} />
           <ProgressBar next={nextQuestion} prev={prevQuestion} progressparcent={parcentage} submit={submit} />
           <Miniplayer />
         </>

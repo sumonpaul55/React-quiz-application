@@ -1,5 +1,5 @@
 import classes from "../Styels/answer.module.css";
-const Answers = () => {
+const Answers = ({ options = [] }) => {
   return (
     <div className={classes.answers}>
       <label className={classes.answer} htmlFor="option1">
