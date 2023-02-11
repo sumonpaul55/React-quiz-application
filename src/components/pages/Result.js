@@ -9,10 +9,8 @@ const Result = () => {
   const { id } = useParams();
   const location = useLocation();
   // eslint-disable-next-line no-unused-vars
-
   const qna = location.state;
   const { loading, error, answers } = useAnswers(id);
-
   // console.log(answers);
   function calculate() {
     let score = 0;
@@ -48,5 +46,4 @@ const Result = () => {
     </>
   );
 };
-
 export default Result;

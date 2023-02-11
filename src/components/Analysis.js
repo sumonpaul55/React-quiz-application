@@ -6,7 +6,6 @@ const Analysis = ({ answers }) => {
   return (
     <div className={classes.analysis}>
       <h1>Question Analysis</h1>
-
       <Quistion answers={answers} />
     </div>
   );

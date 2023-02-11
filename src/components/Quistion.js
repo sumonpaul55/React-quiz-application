@@ -1,15 +1,15 @@
 import React from "react";
 import classes from "../Styels/quistion.module.css";
-import Answers from "./Answers";
+import Answer from "./Answer";
 
-const Quistion = ({ answers }) => {
+const Quistion = ({ answers = [] }) => {
   return answers.map((answer, index) => (
     <div className={classes.question} key={index}>
       <div className={classes.qtitle}>
         <span className="material-icons-outlined"> help_outline </span>
-        Here goes the question from Learn with Sumit?
+        {answer.title}
       </div>
-      <Answers input={false} options={answer.options} key={index} />
+      <Answer input={false} options={answer.options} key={index} />
     </div>
   ));
 };
