@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useMemo } from "react";
 import successImg from "../assets/images/success.png";
 import useFetch from "../Hooks/useFetch";
 import classes from "../Styels/summery.module.css";
 
 const Summery = ({ score, noq }) => {
-  const getImgkeyword = () => {
+  const getImgkeyword = useMemo(() => {
+    console.log("rendered");
     if ((score / (noq * 5)) * 100 < 50) {
       return "failed";
     } else if ((score / (noq * 5)) * 100 < 75) {
@@ -14,8 +15,8 @@ const Summery = ({ score, noq }) => {
     } else {
       return "excellent";
     }
-  };
-  const ImgKeyword = getImgkeyword();
+  }, [score, noq]);
+  const ImgKeyword = getImgkeyword;
   const { loading, error, result } = useFetch(`https://api.pexels.com/v1/search?query=${ImgKeyword}&per_page=1`, "GET", {
     Authorization: process.env.REACt_APP_PIXELS_API_KEY,
   });
@@ -29,17 +30,17 @@ const Summery = ({ score, noq }) => {
       case "very good":
         return "Very good go ahead";
       default:
-        return "Excelent You are learnt";
+        return "Excellent You have learnt";
     }
   };
   return (
     <div className={classes.summary}>
       <div className={classes.point}>
-        <p className={classes.score}>
-          <h3>{appreciate()}</h3>
+        <h3 className={classes.score}>
+          {appreciate()}
           <br />
           {score} out of {noq * 5}
-        </p>
+        </h3>
       </div>
 
       {loading && <h5> Your badge is Loading...</h5>}
