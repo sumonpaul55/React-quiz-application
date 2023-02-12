@@ -16,13 +16,12 @@ const Summery = ({ score, noq }) => {
       return "excellent";
     }
   }, [score, noq]);
-  const ImgKeyword = getImgkeyword;
-  const { loading, error, result } = useFetch(`https://api.pexels.com/v1/search?query=${ImgKeyword}&per_page=1`, "GET", {
+  const { loading, error, result } = useFetch(`https://api.pexels.com/v1/search?query=${getImgkeyword}&per_page=1`, "GET", {
     Authorization: process.env.REACt_APP_PIXELS_API_KEY,
   });
   const ResultImg = result ? result?.photos[0].src.medium : successImg;
   const appreciate = () => {
-    switch (ImgKeyword) {
+    switch (getImgkeyword) {
       case "failed":
         return "You have to learn more";
       case "good":
