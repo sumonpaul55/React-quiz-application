@@ -1,7 +1,7 @@
 import { getDatabase, ref, set } from "firebase/database";
 import _ from "lodash";
 import React, { useEffect, useReducer, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/Authcontext";
 import useQuestions from "../../Hooks/useQuestions";
 import Answer from "../Answer";
@@ -35,6 +35,7 @@ const Quiz = () => {
   const [qna, dispatch] = useReducer(reduce, initialState);
   const { currentUser } = useAuth();
   const navigate = useNavigate();
+  const { state } = useLocation();
   useEffect(() => {
     dispatch({
       type: "questions",
@@ -82,11 +83,10 @@ const Quiz = () => {
           <h4>Question can have multiple answers</h4>
           <Answer input={true} options={qna[currentQuestion].options} handleAnswerchange={handleAnswerchange} />
           <ProgressBar next={nextQuestion} prev={prevQuestion} progressparcent={parcentage} submit={submit} />
-          <Miniplayer />
+          <Miniplayer id={id} title={state.videoTitle} />
         </>
       )}
     </>
   );
 };
-
 export default Quiz;
